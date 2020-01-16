@@ -1,9 +1,10 @@
 let time = 0;
 id = 0;
+let digitText = document.querySelectorAll('.digit');
 const start = () => {
-    startButton.disabled = true; //wtf
+    //startButton.disabled = true; //wtf
     const timerFunc = () => {
-        let digitText = document.querySelectorAll('.digit');
+        
         digitText.forEach(element => element.style.color = 'black')
         let timeStr = String(time);
         let msTens = document.querySelector('#msTens').textContent = timeStr.charAt(timeStr.length-2);
@@ -19,15 +20,26 @@ const start = () => {
     return timerID = window.setInterval(timerFunc, 10);
 }
 
-const reset = (id) => {
+const reset = (id) => { // could just refresh the page I guess
     time = 0;
     window.clearInterval(id)
+    digitText.forEach(element => element.style.color = 'black')
     let msTens = document.querySelector('#msTens').textContent = '-';
         let msHundreds = document.querySelector('#msHundreds').textContent = '-';
         let secondOnes = document.querySelector('#secondOnes').textContent = '-';
         let secondTens = document.querySelector('#secondTens').textContent = '-';
 }
 
-let startButton = document.querySelector('#start').onclick = function(){id = start()};
+let startButton = document.querySelector('#start');
+startButton.onclick = function(){
+    this.style.display = 'none';
+    resetButton.style.display = 'inline';
+    id = start();
+};
 
-let resetButton = document.querySelector('#reset').onclick = function(){reset(id)};
+let resetButton = document.querySelector('#reset');
+resetButton.onclick = function(){
+    this.style.display = 'none'
+    startButton.style.display = 'inline';
+    reset(id)
+};

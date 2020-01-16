@@ -22,3 +22,7 @@ body {
 button {
   margin: .2rem;
 }
+
+#reset {
+  display: none;
+}
