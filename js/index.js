@@ -53,7 +53,19 @@ for (key in siteContent.nav) {
 
 navArrayList.forEach((element, index) => {
   element.textContent = siteContentNavArray[index];
+  element.style.color = 'green';
 })
+
+let newListItem1 = document.createElement('a')
+newListItem1.textContent = 'Test1';
+newListItem1.style.padding = '2rem';
+navArrayList[5].appendChild(newListItem1)
+
+let newListItem2 = document.createElement('a')
+newListItem2.textContent = 'Test2';
+newListItem2.style.padding = '2rem';
+navArrayList[3].prepend(newListItem2)
+
 let ctaText = document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
 let ctaButton = document.querySelector('.cta-text button').textContent = siteContent.cta.button;
 let ctaImg = document.querySelector('#cta-img').src = siteContent.cta["img-src"];

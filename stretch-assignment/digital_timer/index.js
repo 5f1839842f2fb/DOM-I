@@ -4,7 +4,6 @@ let digitText = document.querySelectorAll('.digit');
 const start = () => {
     //startButton.disabled = true; //wtf
     const timerFunc = () => {
-        
         digitText.forEach(element => element.style.color = 'black')
         let timeStr = String(time);
         let msTens = document.querySelector('#msTens').textContent = timeStr.charAt(timeStr.length-2);
