@@ -51,6 +51,8 @@ for (key in siteContent.nav) {
 }
 //navArrayList[0].textContent = siteContent.nav["nav-item-1"]; example
 
+let nav = document.querySelector('nav');
+
 navArrayList.forEach((element, index) => {
   element.textContent = siteContentNavArray[index];
   element.style.color = 'green';
@@ -58,29 +60,33 @@ navArrayList.forEach((element, index) => {
 
 let newListItem1 = document.createElement('a')
 newListItem1.textContent = 'Test1';
-newListItem1.style.padding = '2rem';
-navArrayList[5].appendChild(newListItem1)
+/* newListItem1.style.padding = '2rem'; */
+/* navArrayList[5].appendChild(newListItem1) */
+newListItem1.style.color = 'green';
 
 let newListItem2 = document.createElement('a')
 newListItem2.textContent = 'Test2';
-newListItem2.style.padding = '2rem';
-navArrayList[3].prepend(newListItem2)
+/* newListItem2.style.padding = '2rem'; */
+/* navArrayList[3].prepend(newListItem2) */
+newListItem2.style.color = 'green';
 
+nav.appendChild(newListItem1)
+nav.prepend(newListItem2)
 let ctaText = document.querySelector('.cta-text h1').textContent = siteContent.cta.h1;
 let ctaButton = document.querySelector('.cta-text button').textContent = siteContent.cta.button;
 let ctaImg = document.querySelector('#cta-img').src = siteContent.cta["img-src"];
 
-let topContentH4 = document.querySelectorAll('.top-content .text-content h4');
+/* et topContentH4 = document.querySelectorAll('.top-content .text-content h4');
 topContentH4[0].textContent =  siteContent["main-content"]["features-h4"];
 topContentH4[1].textContent =  siteContent["main-content"]["about-h4"];
 
 let topContentP = document.querySelectorAll('.top-content .text-content p');
 topContentP[0].textContent = siteContent["main-content"]["features-content"];
-topContentP[1].textContent = siteContent["main-content"]["about-content"];
+topContentP[1].textContent = siteContent["main-content"]["about-content"]; */
 
 let middleImg = document.querySelector('#middle-img').src = siteContent["main-content"]["middle-img-src"];
 
-let botContentH4 = document.querySelectorAll('.bottom-content .text-content h4');
+/* let botContentH4 = document.querySelectorAll('.bottom-content .text-content h4');
 botContentH4[0].textContent = siteContent["main-content"]["services-h4"];
 botContentH4[1].textContent = siteContent["main-content"]["product-h4"];
 botContentH4[2].textContent = siteContent["main-content"]["vision-h4"];
@@ -88,7 +94,18 @@ botContentH4[2].textContent = siteContent["main-content"]["vision-h4"];
 let botContentP = document.querySelectorAll('.bottom-content .text-content p');
 botContentP[0].textContent = siteContent["main-content"]["services-content"];
 botContentP[1].textContent = siteContent["main-content"]["product-content"];
-botContentP[2].textContent = siteContent["main-content"]["vision-content"];
+botContentP[2].textContent = siteContent["main-content"]["vision-content"]; */ // old manual way
+
+let mainContentArray = [];
+for (key in siteContent['main-content']) {  // creating an array out of the content objects in the siteContent object
+  mainContentArray.push(siteContent['main-content'][key])
+}
+mainContentArray.splice(4, 1) // removes that pesky image src content
+
+let mainContentElementArray = Array.from(document.querySelectorAll('.text-content *'))
+mainContentElementArray.forEach((element, index) => { // making an array of the HTML elements we want to change and changing their textContent
+  element.textContent = mainContentArray[index] 
+})
 
 let contact = document.querySelectorAll('.contact *');
 contact[0].textContent = siteContent.contact["contact-h4"];
